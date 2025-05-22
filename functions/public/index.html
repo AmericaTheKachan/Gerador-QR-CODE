@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Parceiro</title>
+</head>
+<body>
+    <h1>Bem-vindo ao Site Parceiro!</h1>
+    <h3>Este é um site parceiro do app SuperID.</h3>
+    <p>Clique no botão abaixo para gerar o QR CODE e fazer login</p>
+    <button onclick="gerarQrcode()">Gerar QR CODE</button>
+    <div id="qrcodeGerado"></div>
+
+    <script>
+        async function gerarQrcode() {
+            const url = "your-function-url";
+
+            try {
+                const resposta = await fetch(url);
+                const dados = await resposta.json();
+
+                document.getElementById('qrcodeGerado').innerHTML = `<img src="${dados.qrCodeBase64}" alt="QR Code">`;
+            } catch (erro) {
+                console.error(erro);
+                document.getElementById('qrcodeGerado').innerText = "Erro ao chamar a função.";
+            }
+        }
+    </script>
+</body>
+</html>
